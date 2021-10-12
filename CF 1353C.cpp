@@ -9,8 +9,8 @@ int main(){
 	    int n,x,y;
 	    cin>>n;
 	    int moves=0;
-	    for(int i=0;i<((n/2)+1);i++){
-	        for(int j=0;j<=((n/2)+1);j++){
+	    for(int i=0;i<(n/2);i++){
+	        for(int j=0;j<((n/2)+1);j++){
 	            x=j+1;
 	            y=i+1;
 	            while(!(x>=n/2+1 || y>=n/2+1)){
