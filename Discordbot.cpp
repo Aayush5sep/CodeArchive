@@ -11,8 +11,7 @@ bot = commands.Bot(command_prefix='!')
 client = discord.Client()
 
 current = datetime.datetime.now()
-all_contests =[]
-db['all_contests'] = all_contests
+db['all_contests'] = []
 
 @bot.event
 async def on_ready():
@@ -47,11 +46,13 @@ async def add(ctx,platform,day,month,hour,minutes,link,*,contest):
 @bot.command(pass_context=True)
 @has_permissions(administrator=True)
 async def clear_contests(ctx):
-	for evrt in db['all_contests']:
+	for contests in db['all_contests']:
+		contest = contests
 		db['all_contests'].pop()
-		del db[evrt]
-	await ctx.channel.send(f'{evrt} \n Contest has been deleted by the owner')
-
+		del db[contests]
+		await ctx.channel.send(f' {contest} \n Contest has been deleted by the owner')
+	
+	
 
 @bot.command()
 async def contests(ctx):
