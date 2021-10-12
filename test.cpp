@@ -48,7 +48,7 @@ async def add(ctx,platform,day,month,hour,minutes,link,*,contest):
 @has_permissions(administrator=True)
 async def clear_contests(ctx):
 	for evrt in db['all_contests']:
-		db['all_contests'].pop()
+		del db['all_contests'][evrt]
 		del db[evrt]
 	await ctx.channel.send(f'{evrt} \n Contest has been deleted by the owner')
 
