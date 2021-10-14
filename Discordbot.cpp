@@ -1,7 +1,7 @@
 import os
 my_secret = os.environ['Token']
 import discord
-from discord.ext import commands
+from discord.ext import commands,tasks
 from discord.ext.commands import Bot,has_permissions
 from webserver import keep_alive
 from replit import db
@@ -67,7 +67,14 @@ async def contests(ctx):
   	print('for loop executed')
   print('end executed')
 
+@tasks.loop(minutes=5)
+async def contest_loop():
+	await bot.wait_until_ready()
+	channel = bot.get_channel(896310809888714772)
+	await channel.send('Loop Executed')
+
 
 keep_alive()
+contest_loop.start()
 
 bot.run(my_secret)
